@@ -4,6 +4,8 @@ import (
 	"flag"
 	"fmt"
 	"os"
+
+	"github.com/RChaubey16/todo-list-cli/internal/tasks"
 )
 
 func main() {
@@ -35,7 +37,7 @@ func main() {
 
 	case "list":
 		listCmd.Parse(os.Args[2:])
-		fmt.Println("Listing tasks...")
+		tasks.ListTasks()
 
 	case "remove":
 		removeCmd.Parse(os.Args[2:])
