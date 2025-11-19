@@ -1,4 +1,4 @@
-# Command-line Tool (Go)
+# To-do list CLI (Go)
 
 A small Go command-line utility (learning project) located at the project root. This repository contains a simple CLI program that demonstrates basic Go project structure, task handling under `internal/tasks`, and reading/writing JSON output.
 
