@@ -3,15 +3,15 @@ package tasks
 import (
 	"encoding/json"
 	"fmt"
-	"os"
 
 	"github.com/RChaubey16/todo-list-cli/internal/types"
+	"github.com/RChaubey16/todo-list-cli/internal/utils"
 )
 
 func RemoveTaskFromList(taskId int) error {
-	data, err := os.ReadFile("output.json")
+	data, err := utils.ReadJsonFile("output.json")
 	if err != nil {
-		return fmt.Errorf("could not read the tasks file: %w", err)
+		return err
 	}
 
 	var tf types.TaskFile
@@ -20,18 +20,14 @@ func RemoveTaskFromList(taskId int) error {
 	}
 
 	indexToRemove := taskId - 1
-	if indexToRemove <= 0 {
-		return fmt.Errorf("Invalid task ID:", taskId)
+
+	if indexToRemove < 0 || indexToRemove >= len(tf.Tasks) {
+		return fmt.Errorf("invalid task ID")
 	}
 
 	tf.Tasks = append(tf.Tasks[:indexToRemove], tf.Tasks[indexToRemove+1:]...)
 
-	updatedJSON, err := json.MarshalIndent(tf, "", "  ")
-	if err != nil {
-		return err
-	}
-
-	err = os.WriteFile("output.json", updatedJSON, 0644)
+	err = utils.WriteToJsonFile(tf, "output.json")
 	if err != nil {
 		return err
 	}

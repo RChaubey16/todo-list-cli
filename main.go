@@ -49,8 +49,8 @@ func main() {
 			fmt.Println("missing --id")
 			os.Exit(1)
 		}
-		fmt.Println("Removing task with ID:", *removeID)
-		tasks.RemoveTaskFromList(2)
+		tasks.RemoveTaskFromList(*removeID)
+		fmt.Println("Task removed from list:", *removeID)
 
 	default:
 		fmt.Println("unknown command:", os.Args[1])
