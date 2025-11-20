@@ -4,24 +4,17 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+
+	"github.com/RChaubey16/todo-list-cli/internal/types"
 )
 
-type TaskItem struct {
-	Title  string `json:"title"`
-	Status string `json:"status"`
-}
-
-type TaskFile struct {
-	Tasks []TaskItem `json:"tasks"`
-}
-
-func LoadTasks(fileName string) (*TaskFile, error) {
+func LoadTasks(fileName string) (*types.TaskFile, error) {
 	data, err := os.ReadFile(fileName)
 	if err != nil {
 		return nil, fmt.Errorf("could not read the tasks file: %w", err)
 	}
 
-	var tf TaskFile
+	var tf types.TaskFile
 	if err := json.Unmarshal(data, &tf); err != nil {
 		return nil, fmt.Errorf("invalid json: %w", err)
 	}

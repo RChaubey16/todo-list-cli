@@ -3,6 +3,10 @@
     {
       "title": "Buy eggs",
       "status": "pending"
+    },
+    {
+      "title": "Buy milk",
+      "status": "pending"
     }
   ]
 }

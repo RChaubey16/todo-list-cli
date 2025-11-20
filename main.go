@@ -33,7 +33,11 @@ func main() {
 			fmt.Println("missing --task")
 			os.Exit(1)
 		}
-		fmt.Println("Adding task:", *addTask)
+		err := tasks.AddTaskToList(*addTask)
+		if err != nil {
+			fmt.Println("Error occurred while adding the task", err)
+		}
+		fmt.Println("Task added to the list:", *addTask)
 
 	case "list":
 		listCmd.Parse(os.Args[2:])
