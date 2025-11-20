@@ -50,6 +50,7 @@ func main() {
 			os.Exit(1)
 		}
 		fmt.Println("Removing task with ID:", *removeID)
+		tasks.RemoveTaskFromList(2)
 
 	default:
 		fmt.Println("unknown command:", os.Args[1])
