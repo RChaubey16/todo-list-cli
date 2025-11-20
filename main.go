@@ -18,7 +18,8 @@ func main() {
 	removeCmd := flag.NewFlagSet("remove", flag.ExitOnError)
 	removeID := removeCmd.Int("id", 0, "task ID to remove")
 
-	fmt.Println("OS ARGS", len(os.Args), os.Args)
+	updateCmd := flag.NewFlagSet("update", flag.ExitOnError)
+	updateID := updateCmd.Int("id", 0, "task ID to update")
 
 	// No subcommand?
 	if len(os.Args) < 2 {
@@ -51,6 +52,18 @@ func main() {
 		}
 		tasks.RemoveTaskFromList(*removeID)
 		fmt.Println("Task removed from list:", *removeID)
+
+	case "update":
+		updateCmd.Parse(os.Args[2:])
+		if *updateID == 0 {
+			fmt.Println("missing --id")
+			os.Exit(1)
+		}
+		err := tasks.UpdateTask(*updateID)
+		if err != nil {
+			fmt.Println("Failed to update task:", err)
+		}
+		fmt.Println("Task updated:", *updateID)
 
 	default:
 		fmt.Println("unknown command:", os.Args[1])

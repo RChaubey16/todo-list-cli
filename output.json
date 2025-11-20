@@ -1,8 +1,12 @@
 {
   "tasks": [
     {
-      "title": "Go to gym",
+      "title": "Buy eggs",
       "status": "pending"
+    },
+    {
+      "title": "go gym",
+      "status": "done"
     }
   ]
 }
